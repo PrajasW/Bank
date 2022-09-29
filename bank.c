@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <conio.h>
 #include <stdlib.h>
-
+#include <string.h>
 
 float bankBalance;
 
@@ -18,14 +18,38 @@ int verifyBankDetails(char *inputID,int inputPIN)
 {  
     char bankID[10];
     char temp[4];
+    char data[15];
     int bankPIN;
-
+    int spaceFound;
     FILE *profile = fopen("profile.txt","r");
-    fscanf(profile,"%s",bankID);
+    fgets(data,15,profile);
+    for (int i = 0; i < strlen(data); i++)
+    {
+        if(data[i] == ' ')
+        {
+            spaceFound == 1;
+            continue;
+        }
+        if(spaceFound == 0)
+        {
+            bankID[i] = data[i];
+        }
+        if (spaceFound == 1)
+        {
+            for (int j = 0; j < 4; j++)
+            {
+                temp[j] = data[i];
+                i++;
+            }
+            break;
+        }
+    }
+    
     fclose(profile);
 
+    bankPIN = atoi(temp);
     printf("bankID: %s",bankID);
-    printf("\nbankPIN: %d",bankPIN);
+    printf("\nbankPIN: %s",temp);
 
     return 0;
 }
