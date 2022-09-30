@@ -6,37 +6,27 @@
 #define maxAccounts  100
 #define maxSizeBankID  10
 #define sizeBankPIN  4
-#define bankBalanceMaxFigures  8
-#define maxSizePersonalData  maxSizeBankID+sizeBankPIN+bankBalanceMaxFigures+2
+#define maxBankBalance 8
 
-float bankBalance;
-char data[maxAccounts][maxSizePersonalData];
+float userBankBalance;
 char bankID[maxAccounts][maxSizeBankID];
 char bankPIN[maxAccounts][sizeBankPIN];
+char bankBalance[maxAccounts][maxBankBalance];
 
 int verifyBankDetails(char *inputID,int inputPIN)
 {
     int spaceFound;
+    char profileChar;
     FILE *profile = fopen("profile.txt","r");
     for (int i = 0; i < maxAccounts; i++)
     {
-        spaceFound = 0;
-        fgets(data[i],maxSizePersonalData,profile);
-        for (int j = 0; j < maxSizePersonalData; j++)
+        for (int j = 0; j < (maxSizeBankID+sizeBankPIN+maxBankBalance+2); j++)
         {
-            if (data[i][j] == ' ')
-            {
-                spaceFound++;
-            }
-            if (spaceFound == 0)
-            {
-                bankID[i][j] = data[i][j];
-            }
-            
+            profileChar = (char) fgetc(profile);
+            printf("%c",profileChar);
         }
         
     }
-    
     fclose(profile);
     return 0;
 }
