@@ -1,0 +1,23 @@
+#####variables###### 
+profile.txt stores user data
+each line stores data of different user in following format
+<userID> <userPIN> <userBalance>
+transactions.log stores the transactions done in the following format
+<userID> <transactionType> <transactionAmmount> <time(__:__AM)> <date(dd:mm:yyyy)> 
+
+##### functions() ###### 
+verifyBankDetails(char *inputID,int inputPIN) --> verifies the identity by cheacking the ID and PIN from profile.txt [WIP]
+checkBalance() --> checks the balance from profile.txt [WIP]
+changeBalance() --> makes the changes of balance in profile.txt [WIP]
+
+#####preprocessor variables###### 
+int maxAccounts 
+int sizeBankID
+int sizeBankPIN
+int sizePersonalData --> sumof(sizeBankID,sizeBankPIN)
+
+#####global variables###### 
+float bankBalance --> stores bankBalance to make change(s) on
+char data[maxAccounts][sizePersonalData] --> retrieve bankID[n] and bankPIN[n] from data[n]
+char bankID[maxAccounts][sizeBankID] 
+char bankPIN[maxAccounts][sizeBankPIN]
